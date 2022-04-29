@@ -1,0 +1,47 @@
+{
+    "name" : "translator-bot",
+    "description" : "Telegram Bot for translating messages.",
+    "keywords" : [
+        "telegram",
+        "bot",
+        "heroku",
+        "railway",
+        "python",
+        "pyrogram",
+        "app.json",
+        "app",
+        "tranlate",
+        "google",
+        "translator"
+    ],
+    "repository" : "https://github.com/AJTimePyro/translator-bot",
+    "env" : {
+        "BOT_TOKEN" : {
+            "description" : "Make a bot from https://t.me/BotFather"
+        },
+        "API_ID" : {
+            "description" : "Get this value from https://my.telegram.org/apps"
+        },
+        "API_HASH" : {
+            "description" : "Get this value from https://my.telegram.org/apps"
+        },
+        "OWNER_ID" : {
+            "description" : "Your Telegram User ID"
+        },
+        "GROUP_USER_DATA" : {
+            "description" : "Check README.md"
+        }
+    },
+    "stack" : "heroku-20",
+    "buildpacks" : [
+        {
+            "url" : "heroku/python"
+        }
+    ],
+    "formation" : {
+        "worker" : {
+            "quantity" : 1,
+            "size" : "free"
+        }
+    }
+}
