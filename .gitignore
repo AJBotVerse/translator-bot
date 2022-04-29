@@ -11,4 +11,5 @@ translator.log
 
 # Cache File
 TranslatorBot.session
+__pycache__
 

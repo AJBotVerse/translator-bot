@@ -51,6 +51,28 @@ async def start_help_handler(
     ):
     return await msg.reply_text("<b>Lol</b>")
 
+# Log files Handler
+@app.on_message(filters.chat(Config.OWNER_ID) & filters.private & filters.command("log"))
+async def logHandler(
+    bot : Update,
+    msg : Message
+    ):
+    try:
+        await msg.reply_document('translator.log')
+    except Exception as e:
+        await msg.reply_text(
+            f"Something went wrong while sending log file.\n{e}"
+        )
+
+# Translate Handler
+@app.on_message(filters.group)
+async def translate_handler(
+    bot : Update,
+    msg : Message
+    ):
+    print(msg)
+    return
+
 
 # Running The Bot
 if __name__ == '__main__':
