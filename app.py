@@ -94,30 +94,31 @@ async def translate_handler(
     bot : Update,
     msg : Message
     ):
-    group_id = msg.chat.id
-    try:
-        user_data = group_user_data[group_id]
-    except KeyError:
-        pass
-    except Exception as e:
-        print(e)
-    else:
-        userid = msg.from_user.id
+    text_msg = msg.text
+    if text_msg:
+        group_id = msg.chat.id
         try:
-            lang = user_data[userid]
+            user_data = group_user_data[group_id]
         except KeyError:
             pass
         except Exception as e:
             print(e)
         else:
-            trans_text = trans(msg.text, lang)
-            if trans_text:
-                await msg.reply_text(
-                    trans_text,
-                    reply_to_message_id = msg.id
-                )
-    finally:
-        return
+            userid = msg.from_user.id
+            try:
+                lang = user_data[userid]
+            except KeyError:
+                pass
+            except Exception as e:
+                print(e)
+            else:
+                trans_text = trans(text_msg, lang)
+                if trans_text:
+                    await msg.reply_text(
+                        trans_text,
+                        reply_to_message_id = msg.id
+                    )
+    return
 
 
 ### Running The Bot
