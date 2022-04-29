@@ -60,7 +60,7 @@ Hope you understand it.
 ## Direct Deploy
 ### Railway
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/wJljK9)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/CJdlch)
 
 ### Heroku
 
