@@ -19,7 +19,7 @@ class Config(object):
     OWNER_ID = int(environ.get("OWNER_ID", None))
 
     # Group and User Data
-    GROUP_USER_DATA = dict(environ.get("GROUP_USER_DATA", ""))
+    GROUP_USER_DATA = eval(environ.get("GROUP_USER_DATA", ""))
     """
     For 'GROUP_USER_DATA', read it carefully.
     create a dictionary or json data, and add data like this
