@@ -6,3 +6,9 @@ venv/
 # Test Files
 testexp/
 
+# Log File
+translator.log
+
+# Cache File
+TranslatorBot.session
+

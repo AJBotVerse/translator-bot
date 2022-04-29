@@ -3,7 +3,8 @@
 
 ### Importing
 # Importing External Packages
-from pyrogram import Client
+from pyrogram import Client, filters
+from pyrogram.types import Update, Message
 
 # Importing Inbuilt Packages
 import logging
@@ -39,6 +40,16 @@ app = Client(
     api_hash = Config.API_HASH
 )
 print("Connection Establised")
+
+
+### Handlers
+# Start & Help Handler
+@app.on_message(filters.private & filters.command(["start", "help"]))
+async def start_help_handler(
+    bot : Update,
+    msg : Message
+    ):
+    return await msg.reply_text("<b>Lol</b>")
 
 
 # Running The Bot
