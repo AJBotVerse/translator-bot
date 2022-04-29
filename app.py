@@ -9,11 +9,15 @@ from pyrogram.types import Update, Message
 # Importing Inbuilt Packages
 import logging
 
+# Importing dev modules
+from google_trans.google_trans_new import google_translator
+
 # Importing Credentials & Required Data
 try:
     from testexp.config import Config
 except ModuleNotFoundError:
     from config import Config
+
 
 ### For Displaying Errors&Warnings Better
 logging.basicConfig(
@@ -31,7 +35,27 @@ logging.getLogger(
     logging.WARNING
 )
 
-# Connecting to Bot
+
+### Objects and some variables
+translator = google_translator()
+user_data = Config.USERS_DATA
+
+
+### Some well defined functions
+def trans(text, lang):
+    try:
+        translate_text = translator.translate(
+            text,
+            lang_tgt = lang
+        )
+    except Exception as e:
+        print(e)
+        return
+    else:
+        return translate_text
+
+
+### Connecting to Bot
 print("Connecting to Bot")
 app = Client(
     "TranslatorBot",
@@ -70,11 +94,25 @@ async def translate_handler(
     bot : Update,
     msg : Message
     ):
-    print(msg)
-    return
+    userid = msg.from_user.id
+    try:
+        lang = user_data[userid]
+    except KeyError:
+        pass
+    except Exception as e:
+        print(e)
+    else:
+        trans_text = trans(msg.text, lang)
+        if trans_text:
+            await msg.reply_text(
+                trans_text,
+                reply_to_message_id = msg.id
+            )
+    finally:
+        return
 
 
-# Running The Bot
+### Running The Bot
 if __name__ == '__main__':
     print("Running Bot Now!!!")
     app.run()
