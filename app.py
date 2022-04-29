@@ -38,7 +38,7 @@ logging.getLogger(
 
 ### Objects and some variables
 translator = google_translator()
-user_data = Config.USERS_DATA
+group_user_data = Config.GROUP_USER_DATA
 
 
 ### Some well defined functions
@@ -94,20 +94,28 @@ async def translate_handler(
     bot : Update,
     msg : Message
     ):
-    userid = msg.from_user.id
+    group_id = msg.chat.id
     try:
-        lang = user_data[userid]
+        user_data = group_user_data[group_id]
     except KeyError:
         pass
     except Exception as e:
         print(e)
     else:
-        trans_text = trans(msg.text, lang)
-        if trans_text:
-            await msg.reply_text(
-                trans_text,
-                reply_to_message_id = msg.id
-            )
+        userid = msg.from_user.id
+        try:
+            lang = user_data[userid]
+        except KeyError:
+            pass
+        except Exception as e:
+            print(e)
+        else:
+            trans_text = trans(msg.text, lang)
+            if trans_text:
+                await msg.reply_text(
+                    trans_text,
+                    reply_to_message_id = msg.id
+                )
     finally:
         return
 
