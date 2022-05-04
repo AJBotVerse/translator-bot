@@ -66,5 +66,5 @@ Hope you understand it.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AJTimePyro/translator-bot)
 
-## Contributions
+## Credits
 A Huge thanks to @lushan88a for [google_trans_new](https://github.com/lushan88a/google_trans_new)
